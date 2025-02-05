@@ -3,7 +3,7 @@ import { getMovies, setMovies, getMovie, setMovie } from './feature/movieSlice';
 
 import { fetchAllMovies, fetchOneMovie } from './api';
 
-function* onLoadMoviesAsync({ payload }) {
+function* onLoadAllMoviesAsync({ payload }) {
 	try {
 		const movieName = payload;
 		const response = yield call(fetchAllMovies, movieName);
@@ -19,7 +19,7 @@ function* onLoadMoviesAsync({ payload }) {
 	}
 }
 
-function* onLoadMovieAsync({ payload }) {
+function* onLoadOneMovieAsync({ payload }) {
 	try {
 		const movieId = payload;
 		const response = yield call(fetchOneMovie, movieId);
@@ -35,12 +35,16 @@ function* onLoadMovieAsync({ payload }) {
 
 function* onLoadMovies() {
 	//// generator function
-	yield takeLatest(getMovies.type, onLoadMoviesAsync);
+	yield takeLatest(getMovies.type, onLoadAllMoviesAsync);
 }
 
 function* onLoadMovie() {
 	//// generator function
-	yield takeLatest(getMovie.type, onLoadMovieAsync);
+	yield takeLatest(getMovie.type, onLoadOneMovieAsync);
 }
 
-export const movieSaga = [fork(onLoadMovies), fork(onLoadMovie)];
+export const movieSaga = [
+	fork(onLoadMovies),
+	fork(onLoadMovie)
+];
+
