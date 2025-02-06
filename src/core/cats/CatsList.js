@@ -25,7 +25,9 @@ const CatsList = () => {
                     <div >{el.id} ---  {el.name}</div>
                 </React.Fragment>
             })}
+
             {/*<div>{JSON.stringify(catsState)}</div>*/}
+
         </div>
     )
 }
