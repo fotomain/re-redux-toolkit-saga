@@ -11,7 +11,7 @@ const CatsList = () => {
 
     useEffect(() => {
         console.log("dispatch1")
-        dispatch(catsActions.getCatsFetch())
+        dispatch(catsActions.getCatsFetch({scope:'all'}))
     }, [dispatch]);
 
     return(
@@ -21,7 +21,7 @@ const CatsList = () => {
             {(0!==catsState?.cats.length) && catsState.cats.map((el,ii)=>{
                 return <div key={ii}>{el.name}</div>
             })}
-            <div>{JSON.stringify(catsState)}</div>
+            {/*<div>{JSON.stringify(catsState)}</div>*/}
         </div>
     )
 }

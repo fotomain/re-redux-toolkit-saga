@@ -1,19 +1,13 @@
 # Getting Started with Create React App
 
-movieSlice
-    createMovie
-movieSagaCreate.js
-    function* onCreateMovie() {
-        //// generator function
-        yield takeLatest(getMovie.type, onCreateMovieExec);
-    }
-    
-    export const movieSaga = [
-        fork(onCreateMovie)
-    ];
+taskkill /im node.exe /f
 
+catSagaDelete
+catSagaUpdate
+catSagaCreate
 
 ### `npm i -f`
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

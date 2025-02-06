@@ -3,7 +3,8 @@ import {fork, call, put, takeEvery} from "redux-saga/effects";
 import {catsActions} from "./catSlice";
 
 
-function* workFetch(){
+function* workFetch(params){
+    console.log('params.scope1',params.payload.scope)
     const cats = yield call(()=>fetch("https://api.thecatapi.com/v1/breeds"));
     const catsFormated = yield cats.json()
     const catsChunk = catsFormated.slice(0,10)
@@ -17,6 +18,6 @@ function* watchSaga(){
     yield takeEvery(catsActions.getCatsFetch.type, workFetch)
 }
 
-export const catSaga = [
+export const catSagaRead = [
     fork(watchSaga)
 ]
