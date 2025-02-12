@@ -22,24 +22,20 @@ const CatsList = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        console.log("createStarted111")
-    }, [createStarted]);
+        console.log('useEffect createStarted')
+        if(createStarted) {
+            setTimeout(()=>{
+                    dispatch(catsActions.catCreateExecute({
+                        id: Date.now(),
+                        name: 'Mixus'
+                    }))
+                },
+                10)
+        }
 
-    // useEffect(() => {
-    //     console.log('useEffect createStarted')
-    //     if(createStarted) {
-    //         setTimeout(()=>{
-    //                 dispatch(catsActions.catCreateExecute({
-    //                     id: Date.now(),
-    //                     name: 'Mixus'
-    //                 }))
-    //             },
-    //             10)
-    //     }
-    //
-    //     return () => {
-    //     };
-    // }, [createStarted]);
+        return () => {
+        };
+    }, [createStarted]);
 
     return(
         <div style={{display:'flex', flexDirection:'column'}}>

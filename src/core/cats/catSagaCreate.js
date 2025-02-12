@@ -3,7 +3,7 @@ import {fork, call, put, takeEvery} from "redux-saga/effects";
 import {catsActions} from "./catSlice";
 
 const apiExecute = async (params) => {
-    for (let i = 0; i < 3000_000_000; i++) {}
+    for (let i = 0; i < 1000_000_000; i++) {}
     const apiResponse = {...params.payload, severData:'severData111'};
   return apiResponse;
 }
@@ -21,7 +21,7 @@ function* workFetch(params){
 
 function* watchSaga(){
     console.log("watchSaga catCreate")
-    yield takeEvery(catsActions.catCreateStart.type, workFetch)
+    yield takeEvery(catsActions.catCreateExecute.type, workFetch)
 }
 
 export const catSagaCreate = [
