@@ -2,6 +2,11 @@
 import {fork, call, put, takeEvery} from "redux-saga/effects";
 import {catsActions} from "./catSlice";
 
+const apiExecute = async (params) => {
+    for (let i = 0; i < 3000_000_000; i++) {}
+    const apiResponse = {...params.payload, severData:'severData111'};
+  return apiResponse;
+}
 
 function* workFetch(params){
     console.log('params.payload1',params.payload)
@@ -9,13 +14,14 @@ function* workFetch(params){
     //=== TIMEOUT 3s 3000_000_000
     // console.log('call catsActions.setcreateInProcess')
     // yield put(catsActions.setcreateInProcess({...params.payload }))
-    for (let i = 0; i < 1000_000_000; i++) {}
-    yield put(catsActions.catCreateSuccess({...params.payload, severData:'severData111'}))
+    console.log('params.scope1',params.payload.scope)
+    const apiResponse = yield call(()=>apiExecute(params));
+    yield put(catsActions.catCreateSuccess(apiResponse))
 }
 
 function* watchSaga(){
     console.log("watchSaga catCreate")
-    yield takeEvery(catsActions.catCreateExecute.type, workFetch)
+    yield takeEvery(catsActions.catCreateStart.type, workFetch)
 }
 
 export const catSagaCreate = [

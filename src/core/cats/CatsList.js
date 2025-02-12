@@ -22,20 +22,24 @@ const CatsList = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        console.log('useEffect createStarted')
-        if(createStarted) {
-            setTimeout(()=>{
-                    dispatch(catsActions.catCreateExecute({
-                        id: Date.now(),
-                        name: 'Mixus'
-                    }))
-                },
-                10)
-        }
-
-        return () => {
-        };
+        console.log("createStarted111")
     }, [createStarted]);
+
+    // useEffect(() => {
+    //     console.log('useEffect createStarted')
+    //     if(createStarted) {
+    //         setTimeout(()=>{
+    //                 dispatch(catsActions.catCreateExecute({
+    //                     id: Date.now(),
+    //                     name: 'Mixus'
+    //                 }))
+    //             },
+    //             10)
+    //     }
+    //
+    //     return () => {
+    //     };
+    // }, [createStarted]);
 
     return(
         <div style={{display:'flex', flexDirection:'column'}}>
@@ -50,7 +54,10 @@ const CatsList = () => {
                     variant="contained"
                     align="left"
                     onClick={() => {
-                        dispatch(catsActions.catCreateStart({}))
+                        dispatch(catsActions.catCreateStart({
+                            id: Date.now(),
+                            name: 'Mixus'
+                        }))
                         // dispatch(catsActions.catCreateExecute({
                         //     id: Date.now(),
                         //     name: 'Mixus'
