@@ -37,7 +37,6 @@ const CatsList = () => {
         };
     }, [createStarted]);
 
-
     return(
         <div style={{display:'flex', flexDirection:'column'}}>
             <div>CatsList</div>
