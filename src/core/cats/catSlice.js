@@ -4,17 +4,24 @@ const abstractSlice=createSlice({
     name: "catSlice",
     initialState:{
         isLoading:false,
+        createInProcess:false,
+        createStarted:false,
         cats:[]
     },
     reducers:{
-        create: (state,action) => {
-            state.isCreating=true;
+        createStart: (state,action) => {
+            state.createStarted=true;
             console.log("=== isCreating1");
         },
-        catCreateSuccess: (state,action) => {
-            state.isCreating=false;
-            console.log("=== catCreateSuccess1 action ",action);
+        catCreateExecute: (state,action) => {
+            state.createInProcess=true;
+            console.log("=== setcreateInProcess1 true ");
+        },
+        createSuccess: (state,action) => {
             state.cats = [...state.cats,{id:action.payload.id, name:action.payload.name+ ' #' + action.payload.id }]
+            state.createStarted=false;
+            state.createInProcess=false;
+            console.log("=== catCreateSuccess1 action ",action);
         },
         read: (state) => {
             state.isLoading=true;
@@ -31,8 +38,9 @@ const abstractSlice=createSlice({
 
 export const catsActions = {
 
-    catCreate       : abstractSlice.actions.create ,
-    catCreateSuccess: abstractSlice.actions.catCreateSuccess,
+    catCreateStart      : abstractSlice.actions.createStart ,
+    catCreateSuccess    : abstractSlice.actions.createSuccess,
+    catCreateExecute    : abstractSlice.actions.catCreateExecute,
 
     getCatsFetch    : abstractSlice.actions.read ,
     getCatsSuccess  : abstractSlice.actions.readSuccess,

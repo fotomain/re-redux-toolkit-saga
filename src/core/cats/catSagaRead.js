@@ -9,7 +9,7 @@ function* workFetch(params){
     const catsFormated = yield cats.json()
     const catsChunk = catsFormated.slice(0,10)
     console.log("=== catsChunk",catsChunk)
-    // for (let i = 0; i < 1000_000_000; i++) {}
+    //=== TIMEOUT for (let i = 0; i < 1000_000_000; i++) {}
     yield put(catsActions.getCatsSuccess(catsChunk))
 }
 
