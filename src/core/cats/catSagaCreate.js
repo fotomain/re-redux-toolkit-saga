@@ -2,13 +2,16 @@
 import {fork, call, put, takeEvery} from "redux-saga/effects";
 import {catsActions} from "./catSlice";
 
-const slow_function = async (params) => {
 
-    // const Promise1 = new Promise((resolve)=>resolve(1))
-    // await Promise1()
-    const apiResponse0 = await fetch("https://api.thecatapi.com/v1/breeds")
+const slow_function = async (params) => {
     let c=0;
-    for (let i = 0; i < 1000_000_000; i++) {c++}
+
+    const apiResponse0 = await fetch("https://api.thecatapi.com/v1/breeds")
+    for (let i = 0; i < 50 ; i++) {
+        const apiResponse0 = await fetch("https://api.thecatapi.com/v1/breeds")
+        console.log('loop1',i)
+    }
+    // for (let i = 0; i < 1000_000_000; i++) {c++}
     console.log('=== c',c)
 
 };
