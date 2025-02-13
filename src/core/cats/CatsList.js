@@ -16,26 +16,37 @@ const CatsList = () => {
     console.log('createStarted1',createStarted)
     console.log('createInProcess list ',createInProcess)
 
+    // useEffect(() => {
+    //     console.log("createStarted101")
+    // }, [createStarted]);
+
     useEffect(() => {
         console.log("dispatch1")
         dispatch(catsActions.getCatsFetch({scope:'all'}))
     }, [dispatch]);
 
-    useEffect(() => {
-        console.log('useEffect createStarted')
-        if(createStarted) {
-            setTimeout(()=>{
-                    dispatch(catsActions.catCreateExecute({
-                        id: Date.now(),
-                        name: 'Mixus'
-                    }))
-                },
-                10)
-        }
-
-        return () => {
-        };
-    }, [createStarted]);
+    // useEffect(() => {
+    //     console.log('useEffect createStarted')
+    //     if(createStarted) {
+    //
+    //         // dispatch(catsActions.catCreateExecute({
+    //         //     id: Date.now(),
+    //         //     name: 'Mixus'
+    //         // }))
+    //
+    //         setTimeout(()=>{
+    //                 dispatch(catsActions.catCreateExecute({
+    //                     id: Date.now(),
+    //                     name: 'Mixus'
+    //                 }))
+    //             },
+    //             1)
+    //
+    //     }
+    //
+    //     return () => {
+    //     };
+    // }, [createStarted]);
 
     return(
         <div style={{display:'flex', flexDirection:'column'}}>
@@ -50,14 +61,14 @@ const CatsList = () => {
                     variant="contained"
                     align="left"
                     onClick={() => {
-                        dispatch(catsActions.catCreateStart({
-                            id: Date.now(),
-                            name: 'Mixus'
-                        }))
-                        // dispatch(catsActions.catCreateExecute({
+                        // dispatch(catsActions.catCreateStart({
                         //     id: Date.now(),
                         //     name: 'Mixus'
                         // }))
+                        dispatch(catsActions.catCreateExecute({
+                            id: Date.now(),
+                            name: 'Mixus'
+                        }))
                     }}
                 >
                     CREATE CAT

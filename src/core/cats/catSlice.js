@@ -39,8 +39,8 @@ const abstractSlice=createSlice({
 export const catsActions = {
 
     catCreateStart      : abstractSlice.actions.createStart ,
-    catCreateSuccess    : abstractSlice.actions.createSuccess,
     catCreateExecute    : abstractSlice.actions.catCreateExecute,
+    catCreateSuccess    : abstractSlice.actions.createSuccess,
 
     getCatsFetch    : abstractSlice.actions.read ,
     getCatsSuccess  : abstractSlice.actions.readSuccess,
